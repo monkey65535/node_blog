@@ -4,7 +4,9 @@
   "description": "基于Nodejs和mysql实现个人播客功能",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"cross-env NODE_ENV=dev nodemon ./bin/www.js",
+    "prod":"cross-env NODE_ENV=production nodemon ./bin/www.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/monkey65535/node_blog/issues"
   },
-  "homepage": "https://github.com/monkey65535/node_blog#readme"
+  "homepage": "https://github.com/monkey65535/node_blog#readme",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.1"
+  }
 }
