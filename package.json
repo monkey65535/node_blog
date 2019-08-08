@@ -1,0 +1,19 @@
+{
+  "name": "node_blog",
+  "version": "1.0.0",
+  "description": "基于Nodejs和mysql实现个人播客功能",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkey65535/node_blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monkey65535/node_blog/issues"
+  },
+  "homepage": "https://github.com/monkey65535/node_blog#readme"
+}
