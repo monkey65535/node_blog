@@ -4,5 +4,5 @@ const serverHandle = require('../app');
 
 const app = http.createServer(serverHandle);
 app.listen(PORT,() => {
-    console.log(`app running at post ${POST}`);
+    console.log(`app running at post ${PORT}`);
 })
