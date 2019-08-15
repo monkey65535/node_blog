@@ -2,7 +2,7 @@
   "name": "node_blog",
   "version": "1.0.0",
   "description": "基于Nodejs和mysql实现个人播客功能",
-  "main": "app.js",
+  "main": "bin/www.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"npm run dev",

@@ -17,6 +17,23 @@ const getList = (auth, keyword) => {
     ]
 }
 
+const getDetail = (id) => {
+    return [{
+        id: 1,
+        title: '标题1',
+        conetnt: '内容1',
+        createTime: 1231231231231,
+        author: 'zhangsan'
+    }]
+}
+const newBlog = (blogData = {}) => {
+    console.log('newBlog blogData...', blogData);
+    return {
+        id: 3
+    }
+}
 module.exports = {
-    getList
+    getList,
+    getDetail,
+    newBlog
 }

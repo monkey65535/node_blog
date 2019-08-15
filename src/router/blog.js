@@ -3,7 +3,9 @@ const {
     ErrorModel
 } = require('../model/resModel');
 const {
-    getList
+    getList,
+    getDetail,
+    newBlog
 } = require('../control/blog');
 
 
@@ -18,15 +20,15 @@ const handleBlogRouter = (req, res) => {
     }
     // 获取blog详情
     if (method.toUpperCase() === 'GET' && req.path === '/api/blog/detail') {
-        return {
-            message: '获取blog详情'
-        }
+        const id = req.query.id || '';
+        const datailData = getDetail(id);
+        return new SuccessModel(datailData, '获取blog详情')
     }
     //  新增blog
-    if (method.toUpperCase() === 'GET' && req.path === '/api/blog/add') {
-        return {
-            message: '新增blog'
-        }
+    if (method.toUpperCase() === 'POST' && req.path === '/api/blog/add') {
+        const blogBody = req.body;
+        const data = newBlog(req.body);
+        return new SuccessModel(data,'新建blog');
     }
     //  更新blog
     if (method.toUpperCase() === 'GET' && req.path === '/api/blog/update') {
