@@ -5,12 +5,15 @@ const {
 const {
     getList,
     getDetail,
-    newBlog
+    newBlog,
+    updateBlog,
+    deleteBlog
 } = require('../control/blog');
 
 
 const handleBlogRouter = (req, res) => {
     const method = req.method;
+    const id = req.query.id || '';
     // 获取blog列表
     if (method.toUpperCase() === 'GET' && req.path === '/api/blog/list') {
         const author = req.query.author || '';
@@ -20,7 +23,6 @@ const handleBlogRouter = (req, res) => {
     }
     // 获取blog详情
     if (method.toUpperCase() === 'GET' && req.path === '/api/blog/detail') {
-        const id = req.query.id || '';
         const datailData = getDetail(id);
         return new SuccessModel(datailData, '获取blog详情')
     }
@@ -28,18 +30,24 @@ const handleBlogRouter = (req, res) => {
     if (method.toUpperCase() === 'POST' && req.path === '/api/blog/add') {
         const blogBody = req.body;
         const data = newBlog(req.body);
-        return new SuccessModel(data,'新建blog');
+        return new SuccessModel(data, '新建blog');
     }
     //  更新blog
-    if (method.toUpperCase() === 'GET' && req.path === '/api/blog/update') {
-        return {
-            message: '更新blog'
+    if (method.toUpperCase() === 'POST' && req.path === '/api/blog/update') {
+        const result = updateBlog(id, req.body);
+        if (result) {
+            return new SuccessModel(result, '更新完成');
+        } else {
+            return new ErrorModel(result, '更新失败');
         }
     }
     // 删除blog
     if (method.toUpperCase() === 'GET' && req.path === '/api/blog/delete') {
-        return {
-            message: '删除blog'
+        const result = deleteBlog(id);
+        if (result) {
+            return new SuccessModel(result, '删除完成');
+        } else {
+            return new ErrorModel(result, '删除失败');
         }
     }
 }

@@ -7,22 +7,22 @@ const getPostData = (req) => {
             reslove({});
             return;
         }
-
-        if (req.headers['conetnt-type'] !== 'application/json') {
+        if (req.headers['content-type'] !== 'application/json') {
             reslove({});
             return;
         }
-        let postData = '';
+        
+        let postData = [];
+       
         req.on('data', chunk => {
-            postData += chunk.toString();
+            postData.push(chunk);
         })
         req.on('end', () => {
             if (!postData) {
                 reslove({});
                 return;
             }
-            console.log(postData,'end');
-            reslove(JSON.parse(postData));
+            reslove(Buffer.concat(postData).toString());
         })
     });
     return p;
@@ -58,4 +58,5 @@ const serverHadnle = (req, res) => {
             res.write('404 Not Found');
         })
 }
+
 module.exports = serverHadnle;

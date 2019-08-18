@@ -1,26 +1,27 @@
 {
-  "name": "node_blog",
-  "version": "1.0.0",
-  "description": "基于Nodejs和mysql实现个人播客功能",
-  "main": "bin/www.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"npm run dev",
-    "dev":"cross-env NODE_ENV=dev nodemon ./bin/www.js",
-    "prod":"cross-env NODE_ENV=production nodemon ./bin/www.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/monkey65535/node_blog.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/monkey65535/node_blog/issues"
-  },
-  "homepage": "https://github.com/monkey65535/node_blog#readme",
-  "devDependencies": {
-    "cross-env": "^5.2.0",
-    "nodemon": "^1.19.1"
-  }
+    "name": "node_blog",
+    "version": "1.0.0",
+    "description": "基于Nodejs和mysql实现个人播客功能",
+    "main": "bin/www.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npm run dev",
+        "dev": "cross-env NODE_ENV=dev nodemon ./bin/www.js",
+        "debugger": "cross-env NODE_ENV=dev node ./bin/www.js",
+        "prod": "cross-env NODE_ENV=production nodemon ./bin/www.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/monkey65535/node_blog.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/monkey65535/node_blog/issues"
+    },
+    "homepage": "https://github.com/monkey65535/node_blog#readme",
+    "devDependencies": {
+        "cross-env": "^5.2.0",
+        "nodemon": "^1.19.1"
+    }
 }

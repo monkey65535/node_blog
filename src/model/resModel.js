@@ -14,11 +14,13 @@ class BaseModel {
         }
     }
 }
+
 // 正确信息类
 class SuccessModel extends BaseModel {
     constructor(data, message) {
         super(data, message);
         this.code = 200;
+        this.success = true;
     }
 }
 
@@ -27,6 +29,7 @@ class ErrorModel extends BaseModel {
     constructor(data, message) {
         super(data, message);
         this.code = -1;
+        this.success = false;
     }
 }
 
