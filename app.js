@@ -11,9 +11,9 @@ const getPostData = (req) => {
             reslove({});
             return;
         }
-        
+
         let postData = [];
-       
+
         req.on('data', chunk => {
             postData.push(chunk);
         })
@@ -27,26 +27,28 @@ const getPostData = (req) => {
     });
     return p;
 }
-const serverHadnle = (req, res) => {
-    // 设置返回格式为json
-    res.setHeader('Content-type', 'application/json');
-    // 处理路径和参数
-    const url = req.url;
-    req.path = url.split('?')[0];
-    // 解析query
-    req.query = querystring.parse(url.split('?')[1]);
-    // 处理postData
-    getPostData(req)
-        .then(postData => {
+const serverHadnle = async (req, res) => {
+    try {
+        // 设置返回格式为json
+        res.setHeader('Content-type', 'application/json');
+        // 处理路径和参数
+        const url = req.url;
+        req.path = url.split('?')[0];
+        // 解析query
+        req.query = querystring.parse(url.split('?')[1]);
+        // 处理postData
+        const postData = await getPostData(req);
+        if (postData) {
             req.body = postData;
             // 处理blog路由
-            const blogData = handleBlogRouter(req, res);
+            const blogData = await handleBlogRouter(req, res)
             if (blogData) {
                 res.end(JSON.stringify(blogData));
                 return;
             }
+
             // 处理user路由
-            const userData = handleUserRouter(req, res);
+            const userData = await handleUserRouter(req, res);
             if (userData) {
                 res.end(JSON.stringify(userData));
                 return;
@@ -56,7 +58,10 @@ const serverHadnle = (req, res) => {
                 "Content-type": "text/plain"
             });
             res.write('404 Not Found');
-        })
-}
+        }
+    } catch (e) {
+        throw new Error(e);
+    }
+};
 
 module.exports = serverHadnle;

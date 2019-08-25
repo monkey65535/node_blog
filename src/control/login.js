@@ -1,9 +1,12 @@
+const {exec} = require('../DB/mysql')
 const loginCheck = (username, password) => {
-    if (username && password && username.trim() === 'zhangsan' && password.trim() === '1234') {
-        return true;
-    } else {
-        return false;
-    }
+    let sql = `
+        select username,realname from users where username='${username}' and password='${password}'
+    `
+    return exec(sql)
+        .then(rows => {
+           return rows[0] || {};
+        });
 }
 
 module.exports = {
