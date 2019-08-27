@@ -36,6 +36,16 @@ const serverHadnle = async (req, res) => {
         req.path = url.split('?')[0];
         // 解析query
         req.query = querystring.parse(url.split('?')[1]);
+        //解析cookie
+        req.cookie = {};
+        const cookieStr = req.headers.cookie || '';
+        cookieStr.split(';').forEach(item => {
+            if(!item){
+                return;
+            }
+            const arr = item.split('=');
+            req.cookie[arr[0]] = arr[1];
+        });
         // 处理postData
         const postData = await getPostData(req);
         if (postData) {

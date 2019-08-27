@@ -12,16 +12,14 @@ function exec(sql) {
         con.query(sql, (err, result) => {
             if (err) {
                 reject(err);
-                con.end();
                 return;
             }
-            console.log(result);
             resolve(result);
-            con.end();
+            
         })
     })
 }
-
+con.end();
 module.exports = {
     exec
 };
